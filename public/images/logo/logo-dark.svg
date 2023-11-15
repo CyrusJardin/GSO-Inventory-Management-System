@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 176 32" style="enable-background:new 0 0 176 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#3C50E0;}
+	.st1{fill:#FFFFFF;}
+	.st2{opacity:0.9;}
+	.st3{opacity:0.7;}
+	.st4{fill:none;}
+	.st5{font-family:'MyriadPro-Regular';}
+	.st6{font-size:27.0134px;}
+	.st7{font-size:8px;}
+</style>
+<path class="st0" d="M0,8.4C0,3.8,3.8,0,8.4,0h15.2C28.2,0,32,3.8,32,8.4v15.2c0,4.7-3.8,8.4-8.4,8.4H8.4C3.8,32,0,28.2,0,23.6V8.4z
+	"/>
+<g>
+	<path class="st1" d="M8.4,8.4c0-0.9,0.8-1.7,1.7-1.7l0,0c0.9,0,1.7,0.8,1.7,1.7v15.2c0,0.9-0.8,1.7-1.7,1.7l0,0
+		c-0.9,0-1.7-0.8-1.7-1.7V8.4z"/>
+</g>
+<g class="st2">
+	<path class="st1" d="M14.7,15.2c0-0.9,0.8-1.7,1.7-1.7l0,0c0.9,0,1.7,0.8,1.7,1.7v8.4c0,0.9-0.8,1.7-1.7,1.7l0,0
+		c-0.9,0-1.7-0.8-1.7-1.7V15.2z"/>
+</g>
+<g class="st3">
+	<path class="st1" d="M21.1,10.9c0-0.9,0.8-1.7,1.7-1.7l0,0c0.9,0,1.7,0.8,1.7,1.7v12.6c0,0.9-0.8,1.7-1.7,1.7l0,0
+		c-0.9,0-1.7-0.8-1.7-1.7V10.9z"/>
+</g>
+<rect x="35" class="st4" width="139" height="32"/>
+<text transform="matrix(0.9585 0 0 1 32.7637 24.0723)" class="st5 st6">GSO</text>
+<rect x="313" y="-88" class="st4" width="54" height="0"/>
+<rect x="83.7" y="3" class="st4" width="68" height="16"/>
+<text transform="matrix(1 0 0 1 83.6816 8.6797)" class="st5 st7">Inventory</text>
+<text transform="matrix(1 0 0 1 83.7012 19.4062)" class="st5 st7">Management</text>
+<text transform="matrix(1 0 0 1 83.8022 28.5967)" class="st5 st7">System</text>
+</svg>
