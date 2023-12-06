@@ -25,3 +25,11 @@
   background: #555;
   z-index: 1;
 }
+
+.login {
+  background-image: url('../public/images/circle-points-vector-wallpaper-preview.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}

@@ -65,7 +65,7 @@ export default function QrCode ({ isHidden, hiddenChange, code }) {
 
     return (
         <div className={`fixed z-50 w-full h-full bg-slate-900/50 flex justify-center items-center ${isHidden ? 'hidden' : ''}`}>
-            <div className="border border-white rounded-lg p-6">
+            <div className="border border-white bg-indigo-900 rounded-lg p-6">
                 <div className="space-y-2">
                     <button
                         onClick={()=>setUseBarCode(!useBarCode)}
@@ -79,7 +79,7 @@ export default function QrCode ({ isHidden, hiddenChange, code }) {
                             <GenerateBarcodeImage />
                             <button
                                 type="button"
-                                className="w-full p-2 rounded-lg border border-white text-white"
+                                className="w-full p-2 rounded-lg border border-white text-white hover:bg-indigo-950"
                                 onClick={downloadBarcodeImage}
                             >
                                 save
@@ -96,7 +96,7 @@ export default function QrCode ({ isHidden, hiddenChange, code }) {
                             <button
                                 type="button"
                                 onClick={()=>downloadQRCode()}
-                                className="w-full p-2 rounded-lg border border-white text-white"
+                                className="w-full p-2 rounded-lg border border-white text-white hover:bg-indigo-950"
                                 disabled={!code}
                             >
                                 save
@@ -105,7 +105,7 @@ export default function QrCode ({ isHidden, hiddenChange, code }) {
                     }
                     <button
                         type="button"
-                        className="w-full p-2 rounded-lg border border-white text-white"
+                        className="w-full p-2 rounded-lg border border-white text-white hover:bg-indigo-950"
                         onClick={()=>hiddenChange(true)}
                     >
                         close

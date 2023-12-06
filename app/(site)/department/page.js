@@ -227,7 +227,7 @@ export default function Department () {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 pb-5 space-y-2">
-                <div className="bg-white rounded-lg shadow-md w-full p-6 flex gap-2">
+                <div className="bg-indigo-900/10 border border-white rounded-lg shadow-md w-full p-6 flex gap-2">
                     <button
                         onClick={exportFile}
                         className="w-full md:w-1/3 bg-teal-600 hover:bg-teal-600/80 text-white rounded-lg p-2"
@@ -235,32 +235,32 @@ export default function Department () {
                         export
                     </button>
                 </div>
-                <div className="w-full bg-white rounded-lg shadow-md p-6">
+                <div className="w-full bg-indigo-900/10 border border-white text-white rounded-lg shadow-md p-6">
                     <p className="text-2xl text-center font-bold font-serif">REPORT ON THE PHYSICAL COUNT OF INVENTORIES</p>                    
                     <p className="text-center">( PER DEPARTMENT )</p>
                     
                     <div className="w-full flex justify-center p-6">
                         <DepartmentSelect 
-                            className="w-full md:w-1/5 placeholder:text-center border-b border-black px-2"
+                            className="w-full md:w-1/5 placeholder:text-center border-b border-white bg-indigo-900/10 px-2"
                             onHandleChange={handleDepartment}
                         />
                     </div>
                     <div className="flex justify-between">
                         <div>
-                            <SelectMonth className={'text-center text-xs border-b border-black'} onHandleChange={handleMonth} />
-                            <SelectYear className={'text-center text-xs border-b border-black'} onSetChange={handleYear} />
+                            <SelectMonth className={'text-center text-xs border-b border-white bg-indigo-900/10'} onHandleChange={handleMonth} />
+                            <SelectYear className={'text-center text-xs border-b border-white bg-indigo-900/10'} onSetChange={handleYear} />
                         </div>
                         <div>
                             <input
                                 type="text"
-                                className="text-center text-xs border-b border-black"
+                                className="text-center text-xs border-b border-white bg-indigo-900/10"
                                 defaultValue={Number(total).toLocaleString('en-US')}
                                 readOnly
                             />
                             <p className="text-center text-xs">TOTAL</p>
                         </div>
                     </div>
-                    <div className="p-6 overflow-scroll h-80 relative">
+                    <div className="p-6 overflow-scroll h-80 lg:h-96 relative">
                         <table className="table-auto w-full border border-slate-900">
                             <thead className="bg-slate-800 text-gray-400">
                                 <tr>

@@ -63,7 +63,7 @@ export default function Edit ({ params }) {
             <TopNav />
             <SideNav />
             <div className="absolute top-20 md:top-0 right-0 w-full h-full md:w-4/5 p-6 flex justify-center items-center">
-                <div className="w-full md:w-3/5 bg-white rounded-lg p-6">
+                <div className="w-full md:w-3/5 bg-indigo-900/10 text-white border border-white rounded-lg p-6">
                     <div className="w-full p-6">
                         <p className="text-2xl text-center font-bold">Edit New Office</p>
                     </div>
@@ -71,7 +71,7 @@ export default function Edit ({ params }) {
                         <label className="text-xs font-bold">Department</label>
                         <input 
                             type="text"
-                            className="w-full p-2 border hover:border-black rounded-lg"
+                            className="w-full p-2 border hover:border-indigo-400 rounded-lg bg-indigo-900/10"
                             name="department_name"
                             onChange={handleOfficeChange}
                             value={officeForm.department_name}
@@ -81,7 +81,7 @@ export default function Edit ({ params }) {
                         <label className="text-xs font-bold">Office</label>
                         <input 
                             type="text"
-                            className="w-full p-2 border hover:border-black rounded-lg"
+                            className="w-full p-2 border hover:border-indigo-400 bg-indigo-900/10 rounded-lg"
                             name="office_name"
                             onChange={handleOfficeChange}
                             value={officeForm.office_name}

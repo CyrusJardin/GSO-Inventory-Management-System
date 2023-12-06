@@ -21,7 +21,7 @@ export default function SelectYear ({ className, onSetChange }) {
             {
                 years.map((item, id)=>{
                     return(
-                        <option key={id} value={item}>{item}</option>
+                        <option className="bg-slate-900" key={id} value={item}>{item}</option>
                     )
                 })
             }

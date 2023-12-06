@@ -10,26 +10,18 @@ import { NextResponse } from "next/server";
 export async function GET () {
     try {
         await connectMongoDB();
-        const currentDate = new Date();
-        let startDate = new Date(currentDate);
-        let endDate = new Date(currentDate);
+        const currentDate = new Date().getFullYear();
+        let startDate = new Date(currentDate, 0, 1);
+        let endDate = new Date(currentDate, 11, 31);
         let totalStockCost = 0;
         const totalCostArr = await Inventory.find({stock: {$gte: 1}, deletedAt: null}).populate('item').exec();
-        // const todayStock = await Inventory.find({stock: {$gte: 1}, createdAt: {$gte: new Date(), $lte: new Date()}}).exec();
-        // startDate.setDate(currentDate.getDate() - currentDate.getDay());
-        // endDate.setDate(currentDate.getDate() + (6 - currentDate.getDay()));
-        // const weekStock = await Inventory.find({stock: {$gte: 1}, createdAt: {$gte: startDate, $lte: endDate}}).exec();
-        // const weekRelease = await Release.find({createdAt: {$gte: startDate, $lte: endDate}}).populate('inventory').populate('item').exec();
-        const totalReleaseArr = await Release.find({inventory: {$in: totalCostArr}}).populate('inventory').exec();
+        const totalReleaseArr = await Release.find({inventory: {$in: totalCostArr}, deletedAt: null, release_date: {$gte: startDate, $lte: endDate}}).populate('inventory').exec();
         totalCostArr.map(item=>{
             totalStockCost += item?.total_cost
         })
         const items = await Item.find({deletedAt: null}).exec();
         return NextResponse.json({
             message: 'OK', 
-            // today: todayStock, 
-            // weekStock: weekStock,
-            // weekRelease: weekRelease,
             stock: totalCostArr,
             release: totalReleaseArr,
             total: totalStockCost,

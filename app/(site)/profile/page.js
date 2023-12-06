@@ -108,14 +108,14 @@ export default function Profile () {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 space-y-2">
-                <div className="bg-white rounded-lg shadow-md p-6 space-y-2">
+                <div className="bg-indigo-900/10 border border-white text-white rounded-lg shadow-md p-6 space-y-2">
                     <p className="font-bold">Personal Information</p>
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className="text-xs font-bold">First Name</label>
                             <input 
                                 type="text"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="first_name"
                                 onChange={handleUserForm}
                                 value={userData.first_name}
@@ -125,7 +125,7 @@ export default function Profile () {
                             <label className="text-xs font-bold">Last Name</label>
                             <input 
                                 type="text"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="last_name"
                                 onChange={handleUserForm}
                                 value={userData.last_name}
@@ -135,7 +135,7 @@ export default function Profile () {
                             <label className="text-xs font-bold">Position</label>
                             <input 
                                 type="text"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="position"
                                 onChange={handleUserForm}
                                 value={userData.position}
@@ -146,14 +146,14 @@ export default function Profile () {
                         save
                     </button>
                 </div>
-                <form onSubmit={updateForm} className="bg-white rounded-lg shadow-md p-6 space-y-2">
+                <form onSubmit={updateForm} className="bg-indigo-900/10 border border-white text-white rounded-lg shadow-md p-6 space-y-2">
                     <p className="font-bold">Account Settings</p>
                     <div className="flex gap-2">
                         <div className="w-full">
                             <label className="text-xs font-bold">Username</label>
                             <input 
                                 type="text"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="username"
                                 onChange={handleUserForm}
                                 value={userData.username}
@@ -164,7 +164,7 @@ export default function Profile () {
                             <label className="text-xs font-bold">New Password</label>
                             <input 
                                 type="password"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="new_password"
                                 onChange={handleUserForm}
                                 value={userData.new_password}
@@ -176,7 +176,7 @@ export default function Profile () {
                             <label className="text-xs font-bold">Current Password</label>
                             <input 
                                 type="password"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="current_password"
                                 onChange={handleUserForm}
                                 value={userData.current_password}
@@ -187,7 +187,7 @@ export default function Profile () {
                             <label className="text-xs font-bold">Confirm Password</label>
                             <input 
                                 type="password"
-                                className="w-full border hover:border-black rounded-lg p-2"
+                                className="w-full border hover:border-indigo-400 bg-indigo-900/10 rounded-lg p-2"
                                 name="confirm_password"
                                 onChange={handleUserForm}
                                 value={userData.confirm_password}

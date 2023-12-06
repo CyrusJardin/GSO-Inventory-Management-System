@@ -29,7 +29,7 @@ const itemSchema = new Schema(
         property_number: {
             type: String,
             required: [true, 'property number is required'],
-            unique: true
+            // unique: true
         },
         deletedAt: {
             type: Date,

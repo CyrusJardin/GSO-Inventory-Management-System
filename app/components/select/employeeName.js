@@ -37,11 +37,11 @@ export default function EmployeeName ({ className, onChangeEmployee, onChangeDet
     }, [])
     
     return <select className={className} onChange={handleEmployeeChange} value={defaultEmployee}>
-            <option>-- Select Employee --</option>
+            <option className="bg-slate-900 text-white checked:bg-blue-400">-- Select Employee --</option>
         {
             employees.map((item,id)=>{
                 return (
-                    <option key={id} value={item._id}>{item.first_name} {item.last_name}</option>
+                    <option className="bg-slate-900 text-white checked:bg-blue-400" key={id} value={item._id}>{item.first_name} {item.last_name}</option>
                 )
             })
         }

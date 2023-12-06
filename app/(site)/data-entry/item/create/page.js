@@ -138,7 +138,7 @@ export default function Create () {
             <div
                 className={`fixed w-full flex justify-center items-center h-full bg-slate-900/90 z-50 ${isScanModalOpen ? '' : 'hidden'}`}
             >
-                <div className="border border-white rounded-lg p-6">
+                <div className="border border-white bg-indigo-900 text-white rounded-lg p-6">
                     {scanResult?
                         <h1>Success! {scanResult}</h1>
                         :
@@ -153,13 +153,13 @@ export default function Create () {
                 </div>
             </div>
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 flex justify-center items-center">
-                <form onSubmit={saveItem} className="bg-white rounded-lg shadow-md p-6 w-full md:w-3/5">
+                <form onSubmit={saveItem} className="bg-indigo-900/10 border border-white text-white rounded-lg shadow-md p-6 w-full md:w-3/5">
                     <p className="text-center text-2xl font-bold">Create New Item</p>
                     <div className="w-full">
                         <label className="text-xs font-bold">Item Name</label>
                         <input 
                             type="text"
-                            className="w-full p-2 rounded-lg border hover:border-black"
+                            className="w-full p-2 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="item_name"
                             onChange={handleFormChange}
                             value={itemForm.item_name}
@@ -170,18 +170,18 @@ export default function Create () {
                         <label className="text-xs font-bold">Property Number</label>
                         <input 
                             type="text"
-                            className="w-full p-2 rounded-lg border hover:border-black"
+                            className="w-full p-2 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="property_number"
                             onChange={handleFormChange}
                             value={itemForm.property_number}
-                            required
+                            // required
                         />
                     </div>
                     <div className="w-full">
                         <label className="text-xs font-bold">Unit</label>
                         <input 
                             type="text"
-                            className="w-full p-2 rounded-lg border hover:border-black"
+                            className="w-full p-2 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="unit"
                             onChange={handleFormChange}
                             value={itemForm.unit}
@@ -192,7 +192,7 @@ export default function Create () {
                         <label className="text-xs font-bold">Barcode</label>
                         <input 
                             type="text"
-                            className="w-full p-2 rounded-lg border hover:border-black"
+                            className="w-full p-2 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="barcode_text"
                             onChange={handleFormChange}
                             value={itemForm.barcode_text}
@@ -201,14 +201,14 @@ export default function Create () {
                         <button
                             type="button"
                             onClick={showGenerateCodeModal}
-                            className="absolute text-[10px] font-bold block h-8 w-8 hover:w-20 hover:text-base duration-500 right-10 top-7 rounded-full border bg-blue-400 text-white overflow-hidden"
+                            className="absolute text-[10px] font-bold block h-8 w-8 hover:w-20 hover:text-base duration-500 right-10 top-7 rounded-full ring-2 ring-indigo-900 bg-indigo-400 text-indigo-900 overflow-hidden"
                         >
                             generate
                         </button>
                         <button
                             type="button"
                             onClick={()=>setIsScanModalOpen(true)}
-                            className="absolute text-[10px] font-bold block h-8 w-8 hover:w-20 hover:text-base duration-500 right-1 top-7 rounded-full border bg-green-400 text-white"
+                            className="absolute text-[10px] font-bold block h-8 w-8 hover:w-20 hover:text-base duration-500 right-1 top-7 rounded-full ring-2 ring-purple-900 bg-purple-400 text-purple-900"
                         >
                             scan
                         </button>
@@ -220,7 +220,7 @@ export default function Create () {
                                 <input
                                     type="text"
                                     value={desc}
-                                    className="w-full p-2 rounded-lg border hover:border-black"
+                                    className="w-full p-2 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                                     onChange={(e) => handleDescriptionChange(index, e)}
                                 />
                                 {index !== 0 && (
@@ -236,7 +236,7 @@ export default function Create () {
                         ))}
                         <button 
                             type="button" 
-                            className="text-sm p-2 rounded-lg bg-green-600 hover:bg-green-600/80 text-white mt-2"
+                            className="text-sm p-2 rounded-lg bg-teal-600 hover:bg-teal-600/80 text-teal-100 mt-2"
                             onClick={addDescriptionField}
                         >
                             Add Description Field

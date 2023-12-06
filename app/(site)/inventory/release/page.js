@@ -120,40 +120,54 @@ export default function Release () {
         getData()
     }, [])
 
+    const customStyles = {
+        control: (provided, state) => ({
+            ...provided,
+            borderColor: state.isFocused ? 'border-indigo-900' : 'border-indigo-400',
+            boxShadow: state.isFocused ? '0 0 0 1px #3498db' : 'none',
+            '&:hover': {
+                borderColor: 'border-gray-400',
+            },
+            backgroundColor: 'bg-indigo-900/10'
+        }),
+      };
+
     return (
         <div>
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 flex justify-center items-center">
-                <div className="w-full md:w-3/5 p-6 bg-white rounded-lg shadow-md">
+                <div className="w-full md:w-3/5 p-6 bg-indigo-900/10 rounded-lg shadow-md">
                     <form onSubmit={releaseItem} className="w-full">
-                        <p className="text-2xl text-center font-bold">Release Item</p>
+                        <p className="text-2xl text-center text-white font-bold">Release Item</p>
                         <div className="w-full">
-                            <label className="text-xs font-bold">Employee</label>
+                            <label className="text-xs text-white font-bold">Employee</label>
                             {/* <EmployeeSelect className={'w-full p-2 border hover:border-black rounded-lg'} employees={data.employees} onEmployeeChange={setSelectedEmployee} /> */}
                             <Select 
                                 options={data.employees}
                                 onChange={onEmployeeChange}
                                 defaultInputValue={selectedEmployee}
+                                styles={customStyles}
                                 required
                             />
                         </div>
                         <div className="w-full">
-                            <label className="text-xs font-bold">Item</label>
+                            <label className="text-xs text-white font-bold">Item</label>
                             {/* <InventorySelect className={'w-full p-2 border hover:border-black rounded-lg'} items={data.items} onItemChange={setSelectedItem} /> */}
                             <Select 
                                 options={data.items}
                                 onChange={onItemChange}
                                 defaultInputValue={selectedItem}
+                                styles={customStyles}
                                 required
                             />
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 text-white">
                             <div className="w-1/2">
                                 <label className="text-xs font-bold">Release Date</label>
                                 <input 
                                     type="date"
-                                    className="w-full p-2 rounded-lg border hover:border-black"
+                                    className="w-full p-2 rounded-lg border hover:border-indigo-900 bg-indigo-900/10"
                                     onChange={(e)=>setReleaseDate(e.target.value)}
                                     value={releaseDate}
                                     required
@@ -172,18 +186,18 @@ export default function Release () {
                                 <label className={`text-xs font-bold ${itemStocks<quantity ? 'text-red-600' : ''}`}>Quantity</label>
                                 <input 
                                     type="number"
-                                    className={`w-full p-2 rounded-lg border ${itemStocks<quantity || quantity < 1 ? 'border-red-600 text-red-600' : 'hover:border-black'}`}
+                                    className={`w-full p-2 rounded-lg bg-indigo-900/10 border ${itemStocks<quantity || quantity < 1 ? 'border-red-600 text-red-600' : 'hover:border-black'}`}
                                     onChange={(e)=>setQuantity(e.target.value)}
                                     value={quantity}
                                     required
                                 />
                             </div>
                         </div>
-                        <div className="w-full">
+                        <div className="w-full text-white">
                             <label className="text-xs font-bold">Remarks</label>
                             <textarea 
                                 type="text"
-                                className="w-full p-2 rounded-lg border hover:border-black resize-none"
+                                className="w-full p-2 rounded-lg bg-indigo-900/10 border hover:border-indigo-900 resize-none"
                                 onChange={(e)=>setRemarks(e.target.value)}
                                 value={remarks}
                                 placeholder="Type here..."

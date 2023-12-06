@@ -54,6 +54,17 @@ export default function Edit ({ params }) {
         setItemStocks(stock)
     }
 
+    const onQuantityChange = e => {
+        const newQty = parseInt(e.target.value)
+        const qty = parseInt(employee.quantity, 10) - newQty
+        const stc = parseInt(itemStocks) + qty
+        setEmployee({
+            ...employee,
+            quantity: newQty
+        })
+        setItemStocks(stc)
+    }
+
     function setOptions(items, employees) {
         let itemArr = []
         let ampArr = []
@@ -88,7 +99,8 @@ export default function Edit ({ params }) {
                 employee: selectedEmployee, 
                 release_date: employee.release_date, 
                 quantity: employee.quantity, 
-                remarks: employee.remarks
+                remarks: employee.remarks,
+                stock: itemStocks
             })
             .then(res=>{
                 Swal.fire(res.data.message)
@@ -135,56 +147,58 @@ export default function Edit ({ params }) {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 flex justify-center items-center">
-                <div className="w-full md:w-3/5 p-6 bg-white rounded-lg shadow-md">
+                <div className="w-full md:w-3/5 p-6 bg-indigo-900/10 border border-white rounded-lg shadow-md">
                     <form onSubmit={updateEmployee} className="w-full">
-                        <p className="text-2xl text-center font-bold">Release Item</p>
+                        <p className="text-2xl text-center text-white font-bold">Edit Release Item</p>
                         <div className="w-full">
-                            <label className="text-xs font-bold">Employee</label>
+                            <label className="text-xs text-white font-bold">Employee</label>
                             <EditReleaseEmployee options={data.employees} defaultItem={defaultEmployee} setItem={onEmployeeChange} />
                         </div>
                         <div className="w-full">
-                            <label className="text-xs font-bold">Item</label>
+                            <label className="text-xs text-white font-bold">Item</label>
                             <EditReleaseEmployee options={data.items} defaultItem={defaultItem} setItem={onItemChange} />
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 text-white">
                             <div className="w-1/2">
                                 <label className="text-xs font-bold">Release Date</label>
                                 <input 
                                     type="date"
                                     name="release_date"
-                                    className="w-full p-2 rounded-lg border hover:border-black"
+                                    className="w-full p-2 rounded-lg border hover:border-indigo-900 bg-indigo-900/10"
                                     onChange={handleEmployeeForm}
                                     value={new Date(employee.release_date).toISOString().split('T')[0]}
                                     required
                                 />
                             </div>
                             <div className="w-1/4">
-                                <label className="text-xs font-bold text-indigo-600">Stocks</label>
+                                <label className={`text-xs font-bold ${itemStocks < 0? 'text-red-600' : 'text-indigo-600'}`}>Stocks</label>
                                 <input 
                                     type="text"
-                                    className="w-full p-2 rounded-lg border hover:border-indigo-900 bg-indigo-600 text-white"
+                                    className={`w-full p-2 rounded-lg border  ${itemStocks < 0 ? 
+                                        'hover:border-red-600 bg-red-900 text-red-600' : 
+                                        'hover:border-indigo-900 bg-indigo-600 text-white'}`}
                                     defaultValue={itemStocks}
                                     readOnly
                                 />
                             </div>
                             <div className="w-1/4">
-                                <label className={`text-xs font-bold ${itemStocks<employee.quantity ? 'text-red-600' : ''}`}>Quantity</label>
+                                <label className={`text-xs font-bold ${itemStocks < 0 || employee.quantity <= 0 ? 'text-red-600' : ''}`}>Quantity</label>
                                 <input 
                                     type="number"
                                     name="quantity"
-                                    className={`w-full p-2 rounded-lg border ${itemStocks<employee.quantity ? 'border-red-600 text-red-600' : 'hover:border-black'}`}
-                                    onChange={handleEmployeeForm}
+                                    className={`w-full p-2 rounded-lg bg-indigo-900/10 border ${itemStocks < 0 || employee.quantity <= 0 ? 'border-red-600 text-red-600' : 'hover:border-indigo-900'}`}
+                                    onChange={onQuantityChange}
                                     value={employee.quantity}
                                     required
                                 />
                             </div>
                         </div>
-                        <div className="w-full">
+                        <div className="w-full text-white">
                             <label className="text-xs font-bold">Remarks</label>
                             <textarea 
                                 type="text"
                                 name="remarks"
-                                className="w-full p-2 rounded-lg border hover:border-black resize-none"
+                                className="w-full p-2 rounded-lg border hover:border-indigo-900 resize-none bg-indigo-900/10"
                                 onChange={handleEmployeeForm}
                                 value={employee.remarks}
                                 placeholder="Type here..."
@@ -199,7 +213,7 @@ export default function Edit ({ params }) {
                             </Link>
                             <button
                                 type="submit"
-                                disabled={itemStocks<employee.quantity}
+                                disabled={itemStocks < 0 || employee.quantity <= 0}
                                 className="w-full md:w-1/2 p-2 rounded-lg bg-blue-600 hover:bg-blue-600/80 text-white"
                             >
                                 save

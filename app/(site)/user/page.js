@@ -36,6 +36,21 @@ export default function User () {
         }
     }
 
+    const confirmDelete = id => {
+        Swal.fire({
+            title: 'Delete Confirmation',
+            text: 'Are you sure you want to delete User?',
+            icon: 'warning',
+            showCancelButton: true,
+            showConfirmButton: true
+        })
+        .then(res=>{
+            if (res.isConfirmed) {
+                deleteUser(id)
+            }
+        })
+    }
+
     const deleteUser = async (id) => {
         try {
             await axios.post('/api/user/delete', {id:id})
@@ -132,14 +147,14 @@ export default function User () {
             <TopNav />
             <SideNav />
             <div className="absolute right-0 top-20 p-6 w-full md:w-4/5 space-y-2">
-                <form className="w-full p-6 rounded-lg bg-white">
+                <form className="w-full p-6 rounded-lg bg-indigo-900/10 border border-white text-white">
                     <div className="md:flex gap-2">
                         <div className="w-full md:w-1/3">
                             <label className="text-xs font-bold">Username</label>
                             <input 
                                 type="text"
                                 name="username"
-                                className="w-full p-1 border hover:border-black rounded-lg"
+                                className="w-full p-1 border hover:border-indigo-400 bg-indigo-900/10 rounded-lg"
                                 onChange={handleChange}
                                 value={newUser.username}
                                 required
@@ -150,7 +165,7 @@ export default function User () {
                             <input 
                                 type="text"
                                 name="pword"
-                                className="w-full p-1 border hover:border-black rounded-lg"
+                                className="w-full p-1 border hover:border-indigo-400 bg-indigo-900/10 rounded-lg"
                                 onChange={handleChange}
                                 value={newUser.pword}
                                 required
@@ -173,7 +188,7 @@ export default function User () {
                             <input 
                                 type="text"
                                 name="first_name"
-                                className="w-full p-1 border hover:border-black rounded-lg"
+                                className="w-full p-1 border hover:border-indigo-400 bg-indigo-900/10 rounded-lg"
                                 onChange={handleChange}
                                 value={newUser.first_name}
                                 required
@@ -184,7 +199,7 @@ export default function User () {
                             <input 
                                 type="text"
                                 name="last_name"
-                                className="w-full p-1 border hover:border-black rounded-lg"
+                                className="w-full p-1 border hover:border-indigo-400 bg-indigo-900/10 rounded-lg"
                                 onChange={handleChange}
                                 value={newUser.last_name}
                                 required
@@ -205,7 +220,7 @@ export default function User () {
                         <label className="text-xs font-bold">Position</label>
                         <input 
                             type="text"
-                            className="w-full p-1 border rounded-lg hover:border-black"
+                            className="w-full p-1 border rounded-lg hover:border-indigo-400 bg-indigo-900/10"
                             name="position"
                             onChange={handleChange}
                             value={newUser.position}
@@ -214,7 +229,7 @@ export default function User () {
                     </div>
                 </form>
                 
-                <div className="w-full p-6 rounded-lg bg-white h-80 overflow-scroll">
+                <div className="w-full p-6 rounded-lg bg-indigo-900/10 border border-white text-white h-80 overflow-scroll">
                     <table className="table-auto w-full border">
                         <thead>
                             <tr>
@@ -235,14 +250,9 @@ export default function User () {
                                             <td>{item?.default_password}</td>
                                             <td>{item?.position}</td>
                                             <td className="p-2 text-white">
-                                                {/* <button
-                                                    className="w-1/2 p-1 rounded-lg bg-green-600 hover:bg-green-600/80"
-                                                >
-                                                    edit
-                                                </button> */}
                                                 <button
                                                     className="w-full p-1 rounded-lg bg-red-600 hover:bg-red-600/80"
-                                                    onClick={()=>deleteUser(item._id)}
+                                                    onClick={()=>confirmDelete(item._id)}
                                                 >
                                                     delete
                                                 </button>

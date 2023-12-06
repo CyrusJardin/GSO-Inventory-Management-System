@@ -11,13 +11,12 @@ import jwt from "jsonwebtoken";
 
 export async function POST (request) {
     try {
-        const {id, item_id, employee, release_date, quantity, remarks} = await request.json();
+        const {id, item_id, employee, release_date, quantity, remarks, stock} = await request.json();
         const token = await request.cookies.get('token')?.value || '';
         const decoded = await jwt.decode(token, {complete: true});
         await connectMongoDB();
         const inventory = await Inventory.findOne({_id: item_id, deletedAt: null}).populate('item').exec();
         const emp = await Employee.findOne({_id: employee, deletedAt: null}).populate('department').exec();
-        console.log(emp, inventory)
         const it = await Item.findOne({_id: inventory.item._id}).exec();
         const department = await Department.findOne({_id: emp.department._id}).exec();
         const user = await User.findOne({_id: decoded.payload.id}).exec();
@@ -34,6 +33,9 @@ export async function POST (request) {
         if (!result) {
             return NextResponse.json({message: 'Failed to update'}, {status: 402});
         }
+        const stockDiff = parseInt(inventory.stock, 10) - parseInt(stock, 10);
+        const newRelease = parseInt(inventory.release, 10) + stockDiff;
+        await Inventory.findOneAndUpdate({_id: inventory._id}, {stock: stock, release: newRelease}).exec();
         const notif = {
             user: user,
             message: 'You have edited a Release'

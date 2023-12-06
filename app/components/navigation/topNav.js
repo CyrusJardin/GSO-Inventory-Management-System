@@ -79,57 +79,60 @@ export default function TopNav () {
     }, [notifications])
 
     return (
-        <div className="fixed top-0 right-0 w-full md:w-4/5 h-20 z-50 bg-white">
-            <form className="flex p-6" onSubmit={search}>
-                <button
-                    type="submit"
-                >
-                    <HiMagnifyingGlass className="w-6 h-6 hover:text-blue-600" />
-                </button>
-                <input 
-                    type="text"
-                    className="border-none outline-none p-2 md:w-1/2"
-                    placeholder="Type to search..."
-                    onChange={e=>setSearchItem(e.target.value)}
-                />
-                <button
-                    type="button"
-                    className="rounded-full"
-                    onClick={readNotification}
-                >
-                    <BiBell className={`w-6 h-6 ${newNotification ? ' text-red-600' : ''}`} />
-                </button>
-                <ProfileDropDown />
-            </form>
-            <div className={`w-full md:w-1/5 p-6 fixed right-0 top-20 bottom-0 bg-slate-800 overflow-y-scroll border-l duration-300 ${notification ? "translate-x-0" : "translate-x-full"}`}>
-                <p className="text-xl text-center text-gray-300">Notification</p>
-                <ul className="space-y-4">
-                    {
-                        notifications.map((item, index)=>{
-                            return (
-                                <li key={index} className={`relative border-b ${item.status ? 'text-gray-500' : 'text-gray-300'}`}>
-                                    {
-                                        isLoading[index] ? <Spinner /> : 
-                                        <div>
-                                            <p>{item.message}</p>
-                                            <div className="flex justify-between mt-2">
-                                                <p className="text-xs font-bold"><DateFrame dateStr={item.createdAt} /></p>
-                                                <button
-                                                    onClick={()=>deleteNotification(item._id, index)}
-                                                    className="text-red-600 hover:font-bold text-xs"
-                                                >
-                                                    delete
-                                                </button>
-                                            </div>
-                                        </div>
-                                    }
-                                    
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+        <section>
+            <div className="fixed top-0 right-0 w-full md:w-4/5 h-20 z-50 backdrop-blur-sm text-gray-400">
+                <form className="flex p-6 gap-2" onSubmit={search}>
+                    <button
+                        type="submit"
+                    >
+                        <HiMagnifyingGlass className="w-6 h-6 hover:text-blue-600" />
+                    </button>
+                    <input 
+                        type="text"
+                        className="border-none outline-none p-2 md:w-1/2 bg-indigo-900/10 text-white"
+                        placeholder="Type to search..."
+                        onChange={e=>setSearchItem(e.target.value)}
+                    />
+                    <button
+                        type="button"
+                        className="rounded-full"
+                        onClick={readNotification}
+                    >
+                        <BiBell className={`w-6 h-6 ${newNotification ? ' text-red-600' : ''}`} />
+                    </button>
+                    <ProfileDropDown />
+                </form>
             </div>
-        </div>
+            
+            <div className={`w-full md:w-1/5 p-6 fixed right-0 top-20 bottom-0 z-50 bg-slate-800 overflow-y-scroll border-l duration-300 ${notification ? "translate-x-0" : "translate-x-full"}`}>
+                    <p className="text-xl text-center text-gray-300">Notification</p>
+                    <ul className="space-y-4">
+                        {
+                            notifications.map((item, index)=>{
+                                return (
+                                    <li key={index} className={`relative border-b ${item.status ? 'text-gray-500' : 'text-gray-300'}`}>
+                                        {
+                                            isLoading[index] ? <Spinner /> : 
+                                            <div>
+                                                <p>{item.message}</p>
+                                                <div className="flex justify-between mt-2">
+                                                    <p className="text-xs font-bold"><DateFrame dateStr={item.createdAt} /></p>
+                                                    <button
+                                                        onClick={()=>deleteNotification(item._id, index)}
+                                                        className="text-red-600 hover:font-bold text-xs"
+                                                    >
+                                                        delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
+                                        
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+        </section>
     )
 }

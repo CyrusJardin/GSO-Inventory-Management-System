@@ -262,7 +262,7 @@ export default function Employee () {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 pb-1 space-y-2">
-                <div className="w-full bg-white p-6 rounded-lg shadow-md text-white flex gap-2">
+                <div className="w-full bg-indigo-900/10 border border-white p-6 rounded-lg shadow-md text-white flex gap-2">
                     <button
                         onClick={exportAll}
                         className="w-full md:w-1/3 rounded-lg p-2 bg-teal-600 hover:bg-teal-600/80 hover:font-bold"
@@ -270,19 +270,19 @@ export default function Employee () {
                         export 
                     </button>
                 </div>
-                <div className="w-full bg-white p-6 rounded-lg shadow-md">
+                <div className="w-full bg-indigo-900/10 border border-white text-white p-6 rounded-lg shadow-md">
                     <p className="text-center text-2xl font-bold font-serif">INDIVIDUAL</p>
-                    <p className="text-center">( AS OF <SelectMonth onHandleChange={handleMonth} /> <SelectYear onSetChange={handleYear} /> )</p>
+                    <p className="text-center">( AS OF <SelectMonth className={'bg-indigo-900/10'} onHandleChange={handleMonth} /> <SelectYear className={'bg-indigo-900/10'} onSetChange={handleYear} /> )</p>
                     <div className="md:flex w-full justify-center mt-6">
                         <div>
-                            <EmployeeName className={'border-black border-b'} onChangeDetails={setEmployeeDetails} toActivate={updateEmployees} onChangeEmployee={setSelectedEmployee} month={month} year={year} />
-                            <p className="text-center text-gray-800 text-sm">NAME OF EMPLOYEE</p>
+                            <EmployeeName className={'border-white border-b bg-indigo-900/10'} onChangeDetails={setEmployeeDetails} toActivate={updateEmployees} onChangeEmployee={setSelectedEmployee} month={month} year={year} />
+                            <p className="text-center text-gray-400 text-sm">NAME OF EMPLOYEE</p>
                         </div>
                     </div>
                     <div className="md:flex justify-between p-6">
                         <div className="flex flex-col w-full md:w-1/5">
                             <input 
-                                className="border-black w-full border-b"
+                                className="border-white w-full border-b bg-indigo-900/10"
                                 placeholder="Department"
                                 defaultValue={employeeDetails.department}
                                 readOnly
@@ -291,7 +291,7 @@ export default function Employee () {
                         </div>
                         <div className="flex flex-col w-full md:w-1/5">
                             <input 
-                                className="border-black w-full border-b"
+                                className="border-white w-full border-b bg-indigo-900/10"
                                 placeholder="Position"
                                 defaultValue={employeeDetails.position}
                                 readOnly
@@ -300,7 +300,7 @@ export default function Employee () {
                         </div>
                         <div className="flex flex-col w-full md:w-1/5">
                             <input 
-                                className="border-black w-full border-b"
+                                className="border-white w-full border-b bg-indigo-900/10"
                                 placeholder="Status of Employment"
                                 defaultValue={employeeDetails.status}
                                 readOnly
@@ -309,7 +309,7 @@ export default function Employee () {
                         </div>
                         <div className="flex flex-col w-full md:w-1/5">
                             <input 
-                                className="border-black w-full border-b"
+                                className="border-white w-full border-b bg-indigo-900/10"
                                 placeholder="Total Cost"
                                 defaultValue={Number(totalCost).toLocaleString('en-US')}
                                 readOnly
@@ -317,7 +317,7 @@ export default function Employee () {
                             <label className="text-center text-xs">Total Cost</label>
                         </div>
                     </div>
-                    <div className="w-full p-6 h-72 overflow-scroll relative">
+                    <div className="w-full p-6 h-72 lg:h-96 overflow-scroll relative">
                         {
                             isLoading ?
                             <div className="absolute w-full h-full flex justify-center items-center">

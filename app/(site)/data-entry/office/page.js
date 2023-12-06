@@ -58,7 +58,7 @@ export default function Department () {
             <TopNav />  
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 space-y-2">
-                <div className="w-full p-6 bg-white rounded-lg shadow-md">
+                <div className="w-full p-6 bg-indigo-900/10 border border-white rounded-lg shadow-md">
                     <Link
                         href={'/data-entry/office/create'}
                         className="block w-full md:w-1/3 p-2 rounded-lg bg-blue-600 text-center text-white hover:bg-blue-600/80"
@@ -66,7 +66,7 @@ export default function Department () {
                         new office
                     </Link>
                 </div>
-                <div className="w-full h-96 overflow-scroll p-6 bg-white rounded-lg shadow-md relative">
+                <div className="w-full h-96 overflow-scroll p-6 bg-indigo-900/10 border border-white text-white rounded-lg shadow-md relative">
                     <table className="table-auto w-full border border-slate-900">
                         <thead className="bg-slate-800 text-gray-400">
                             <tr>

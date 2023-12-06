@@ -77,7 +77,7 @@ export default function Item () {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 space-y-2">
-                <div className="w-full flex gap-2 bg-white p-6 rounded-lg shadow-md">
+                <div className="w-full flex gap-2 bg-indigo-900/10 border border-white p-6 rounded-lg shadow-md">
                     <Link
                         href={'/data-entry/item/create'}
                         className="block w-full md:w-1/3 p-2 rounded-lg bg-blue-600 text-center text-white hover:bg-blue-600/80"
@@ -85,7 +85,7 @@ export default function Item () {
                         new item
                     </Link>
                 </div>
-                <div className="w-full bg-white p-6 rounded-lg h-96 overflow-scroll shadow-md relative">
+                <div className="w-full bg-indigo-900/10 border border-white text-white p-6 rounded-lg h-96 overflow-scroll shadow-md relative">
                     <table className="w-full table-auto">
                         <thead className="bg-slate-800 text-gray-400 border border-slate-600">
                             <tr>

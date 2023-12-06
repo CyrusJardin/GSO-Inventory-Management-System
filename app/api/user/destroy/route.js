@@ -1,5 +1,4 @@
 import connectMongoDB from "@/libs/mongodb";
-import Inventory from "@/models/inventory";
 import User from "@/models/users";
 import Notification from "@/models/notification";
 import jwt from "jsonwebtoken";
@@ -11,17 +10,17 @@ export async function POST (request) {
         const token = await request.cookies.get('token')?.value || '';
         const decoded = await jwt.decode(token, {complete: true});
         await connectMongoDB();
-        const user = await User.findOne({_id: decoded.payload.id}).exec();
-        const result = await Inventory.findOneAndDelete({_id: id}).exec();
-        if (!result) {
-            return NextResponse.json({message: 'Failed to delete Inventory'}, {status: 402});
+        const user = await User.findOne({_id: id}).exec();
+        const usr = await User.findOne({_id: decoded.payload.id}).exec();
+        if (!user) {
+            return NextResponse.json({message: 'Can not find User'}, {status: 402});
         }
         const notif = {
-            user: user,
-            message: 'You have deleted Inventory from the Archive'
+            user: usr,
+            message: 'You have permanently deleted a User.'
         }
-        await Notification.create(notif);
-        return NextResponse.json({message: 'Inventory successfully deleted'}, {status: 200});
+        await Notification.create(notif)
+        return NextResponse.json({message: 'User has been permanently deleted'}, {status: 200});
     } catch (error) {
         return NextResponse.json({message: error.message}, {status: 500});
     }

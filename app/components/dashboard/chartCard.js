@@ -120,7 +120,7 @@ export default function ChartCard () {
       }
 
     return (
-        <div className="col-span-12 rounded-sm border border-stroke bg-white shadow-md p-10 md:col-span-8">
+        <div className="col-span-12 rounded-sm border border-stroke bg-indigo-900/10 text-white shadow-md p-10 md:col-span-8">
           <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
         <div className="flex w-full gap-3 sm:gap-5">
           <div className="flex w-full md:w-46">

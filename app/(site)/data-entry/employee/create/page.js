@@ -69,7 +69,7 @@ export default function Create () {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 h-full right-0 p-6 flex justify-center items-center">
-                <form onSubmit={createEmployee} className="w-full md:w-3/5 bg-white p-6 rounded-lg">
+                <form onSubmit={createEmployee} className="w-full md:w-3/5 bg-indigo-900/10 border border-white text-white p-6 rounded-lg">
                     <div className="w-full p-6">
                         <p className="text-2xl text-center font-bold">Create New Employee</p>
                     </div>
@@ -77,7 +77,7 @@ export default function Create () {
                         <label className="text-xs font-bold">First Name</label>
                         <input 
                             type="text"
-                            className="w-full p-1 rounded-lg border hover:border-black"
+                            className="w-full p-1 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="first_name"
                             onChange={handleChange}
                             value={formData.first_name}
@@ -88,7 +88,7 @@ export default function Create () {
                         <label className="text-xs font-bold">Last Name</label>
                         <input 
                             type="text"
-                            className="w-full p-1 rounded-lg border hover:border-black"
+                            className="w-full p-1 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="last_name"
                             onChange={handleChange}
                             value={formData.last_name}
@@ -99,18 +99,17 @@ export default function Create () {
                         <label className="text-xs font-bold">Position</label>
                         <input 
                             type="text"
-                            className="w-full p-1 rounded-lg border hover:border-black"
+                            className="w-full p-1 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="position"
                             onChange={handleChange}
                             value={formData.position}
-                            required
                         />
                     </div>
                     <div className="w-full">
                         <label className="text-xs font-bold">Employment Status</label>
                         <input 
                             type="text"
-                            className="w-full p-1 rounded-lg border hover:border-black"
+                            className="w-full p-1 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="employment_status"
                             onChange={handleChange}
                             value={formData.employment_status}
@@ -120,17 +119,17 @@ export default function Create () {
                     <div className="w-full">
                         <label className="text-xs font-bold">Department - Office</label>
                         <select 
-                            className="w-full p-1 rounded-lg border hover:border-black"
+                            className="w-full p-1 rounded-lg border hover:border-indigo-400 bg-indigo-900/10"
                             name="dep"
                             onChange={handleChange}
                             value={formData.dep}
                             required
                         >
-                            <option>-- Select Department --</option>
+                            <option className="bg-slate-900 hover:bg-blue-900 checked:bg-blue-900">-- Select Department --</option>
                             {
                                 department.map((item,id)=>{
                                     return(
-                                        <option key={id} value={item._id}>{item.department_name} {item.office_name}</option>
+                                        <option className="bg-slate-900 hover:bg-blue-900 checked:bg-blue-900" key={id} value={item._id}>{item.department_name} {item.office_name}</option>
                                     )
                                 })
                             }

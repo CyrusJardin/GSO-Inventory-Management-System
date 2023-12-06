@@ -162,11 +162,11 @@ export default function Page () {
                     <BorrowedItemChart stock={inventoryDetails.weekly_cost} release={inventoryDetails.weekly_release} />
                 </div>
                 <div className="mt-2 grid grid-cols-12 gap-2">
-                    <div className="w-full col-span-12 md:col-span-6 bg-white rounded-lg shadow-md p-6">
+                    <div className="w-full col-span-12 md:col-span-6 bg-indigo-900/10 text-white border border-white rounded-lg shadow-md p-6">
                         <p className="text-center text-xl font-bold">Item Summary</p>
                         <div className="w-full">
                             <select
-                                className="w-full rounded-lg p-2 border hover:border-black"
+                                className="w-full rounded-lg p-2 border hover:border-black text-slate-700"
                                 onChange={onSelectedItemSummaryChange}
                             >
                                 <option></option>
@@ -192,7 +192,7 @@ export default function Page () {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full col-span-12 md:col-span-6 bg-white rounded-lg shadow-md p-6">
+                    <div className="w-full col-span-12 md:col-span-6 bg-indigo-900/10 text-white border border-white rounded-lg shadow-md p-6">
                         <p className="text-center text-xl font-bold">Available Stocks</p>
                         <div className="w-full h-96 overflow-scroll relative">
                             <table className="w-full table-auto">
