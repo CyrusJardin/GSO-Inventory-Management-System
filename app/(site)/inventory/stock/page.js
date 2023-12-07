@@ -23,20 +23,40 @@ export default function Stock () {
     const [totalCost, setTotalCost] = useState(0.00)
     const [remark, setRemark] = useState('')
     const [dateAcquired, setDateAcquired] = useState('')
+    const [stockForm, setStockForm] = useState({
+        inventory_tag: '',
+        quantity: 0,
+        unit_cost: 0,
+        total_cost: 0,
+        item_id: '',
+        date_acquired: new Date(),
+        source_fund: '',
+        remarks: ''
+    })
+
+    const handleStock = e => {
+        const {name, value} = e.target
+        setStockForm({
+            ...stockForm,
+            [name]: value
+        })
+    }
 
     const addStock = async () => {
         try {
             setDisableBtn(true)
-            await axios.post('/api/inventory/store', {
-                inventory_tag: tag,
-                quantity: qty,
-                unit_cost: unitCost,
-                total_cost: totalCost,
-                item_id: selectedItem,
-                date_acquired: dateAcquired,
-                source_fund: sourceFund,
-                remarks: remark
-            })
+            await axios.post('/api/inventory/store', stockForm
+            // {
+            //     inventory_tag: tag,
+            //     quantity: qty,
+            //     unit_cost: unitCost,
+            //     total_cost: totalCost,
+            //     item_id: selectedItem,
+            //     date_acquired: dateAcquired,
+            //     source_fund: sourceFund,
+            //     remarks: remark
+            // }
+            )
             .then(res=>{
                 setDisableBtn(false)
                 setTag('')
@@ -60,51 +80,79 @@ export default function Stock () {
         }
     }
 
-    useEffect(()=>{
-        const getDatas = async () => {
-            try {
-                await axios.get('/api/inventory')
-                .then(res=>{
-                    setItemOption(res.data.items)
-                })
-                .catch(err=>{
-                    console.log(err.message)
-                })
-            } catch (error) {
-                console.log(error.message)
-            }
+    
+    const getDatas = async () => {
+        try {
+            await axios.get('/api/inventory')
+            .then(res=>{
+                // setItemOption(res.data.items)
+                console.log(res)
+                setItemSelectOption(res.data.items)
+            })
+            .catch(err=>{
+                console.log(err.message)
+            })
+        } catch (error) {
+            console.log(error.message)
         }
-        function setItemOption(items) {
-            let arr = []
-            items.forEach(element => {
-                const optionObj = {
-                    value: element?._id,
-                    label: element?.item_name
-                }
-                arr.push(optionObj)
-            });
-            setItemSelectOption(arr)
-        }
-        getDatas()
-        setTotalCost(qty * unitCost)
-    }, [items, unitCost, qty])
+    }
+    // function setItemOption(items) {
+    //     let arr = []
+    //     items.forEach(element => {
+    //         const optionObj = {
+    //             value: element?._id,
+    //             label: element?.item_name
+    //         }
+    //         arr.push(optionObj)
+    //     });
+    //     setItemSelectOption(arr)
+    // }
 
-    const customStyles = {
-        control: (provided, state) => ({
-            ...provided,
-            borderColor: state.isFocused ? 'border-indigo-900' : 'border-indigo-400',
-            boxShadow: state.isFocused ? '0 0 0 1px #3498db' : 'none',
-            '&:hover': {
-                borderColor: 'border-gray-400',
-            },
-            backgroundColor: 'bg-indigo-900/10',
-        }),
-        menu: (baseStyle)=>({
-            ...baseStyle,
-            colors: 'black',
-            backgroundColor: 'white',
-        }),
-      };
+    useEffect(()=>{
+        getDatas()
+        // setTotalCost(qty * unitCost)
+    })
+
+    // const customStyles = {
+    //     control: (provided, state) => ({
+    //         ...provided,
+    //         borderColor: state.isFocused ? 'border-indigo-900' : 'border-indigo-400',
+    //         boxShadow: state.isFocused ? '0 0 0 1px #3498db' : 'none',
+    //         '&:hover': {
+    //             borderColor: 'border-gray-400',
+    //         },
+    //         backgroundColor: 'bg-indigo-900/10',
+    //     }),
+    //     menu: (baseStyle)=>({
+    //         ...baseStyle,
+    //         colors: 'black',
+    //         backgroundColor: 'white',
+    //     }),
+    //   };
+
+    const handleQuantity = e => {
+        const q = e.target.value
+        const newTotal = q * unitCost
+        setQty(q)
+        setTotalCost(newTotal)
+        setStockForm({
+            ...stockForm,
+            quantity: q,
+            total_cost: newTotal
+        })
+    }
+
+    const handleUnitCost = e => {
+        const cost = e.target.value
+        const newTotal = qty * cost
+        setUnitCost(cost)
+        setTotalCost(newTotal)
+        setStockForm({
+            ...stockForm,
+            unit_cost: cost,
+            total_cost: newTotal
+        })
+    }
 
     return (
         <div>
@@ -117,9 +165,11 @@ export default function Stock () {
                             <label className="text-xs font-bold">Inventory Tag</label>
                             <input 
                                 type="text"
+                                name="inventory_tag"
                                 className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${tag ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
-                                onChange={(e)=>setTag(e.target.value)}
-                                value={tag}
+                                // onChange={(e)=>setTag(e.target.value)}
+                                onChange={handleStock}
+                                value={stockForm.inventory_tag}
                                 required
                             />
                         </div>
@@ -127,9 +177,12 @@ export default function Stock () {
                             <label className="text-xs font-bold">Source of Funds</label>
                             <input 
                                 type="text"
+                                name="source_fund"
                                 className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${sourceFund ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
-                                onChange={(e)=>setSourceFund(e.target.value)}
-                                value={sourceFund}
+                                // onChange={(e)=>setSourceFund(e.target.value)}
+                                // value={sourceFund}
+                                onChange={handleStock}
+                                value={stockForm.source_fund}
                                 required
                             />
                         </div>
@@ -148,14 +201,17 @@ export default function Stock () {
                                 // }}
                             /> */}
                             <select
-                                onChange={e=>setSelectedItem(e.target.value)}
+                                // onChange={e=>setSelectedItem(e.target.value)}
+                                name="item_id"
+                                onChange={handleStock}
+                                value={stockForm.item_id}
                                 className="p-2 bg-indigo-900/10 border border-white hover:border-indigo-400 w-full rounded-lg"
                             >
                                 <option className="bg-slate-900 text-white">Select...</option>
                                 {
                                     itemSelectOption.map((item,idx)=>{
                                         return (
-                                            <option key={idx} value={item.value} className="bg-slate-900 text-white">{item.label}</option>
+                                            <option key={idx} value={item._id} className="bg-slate-900 text-white">{item.item_name}</option>
                                         )
                                     })
                                 }
@@ -166,8 +222,11 @@ export default function Stock () {
                             <input 
                                 className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${dateAcquired ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
                                 type="date"
-                                onChange={e=>setDateAcquired(e.target.value)}
-                                value={dateAcquired}
+                                name="date_acquired"
+                                // onChange={e=>setDateAcquired(e.target.value)}
+                                // value={dateAcquired}
+                                onChange={handleStock}
+                                value={stockForm.date_acquired}
                                 required
                             />
                         </div>
@@ -178,8 +237,9 @@ export default function Stock () {
                                 <input 
                                     type="Number"
                                     className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${qty ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
-                                    onChange={(e)=>setQty(e.target.value)}
-                                    value={qty}
+                                    onChange={handleQuantity}
+                                    // value={qty}
+                                    value={stockForm.quantity}
                                     required
                                 />
                             </div>
@@ -188,8 +248,9 @@ export default function Stock () {
                                 <input 
                                     type="Number"
                                     className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${unitCost ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
-                                    onChange={(e)=>setUnitCost(e.target.value)}
-                                    value={Number(unitCost).toFixed(2)}
+                                    onChange={handleUnitCost}
+                                    // value={Number(unitCost).toFixed(2)}
+                                    value={Number(stockForm.unit_cost).toFixed(2)}
                                     required
                                 />
                             </div>
@@ -198,7 +259,8 @@ export default function Stock () {
                                 <input 
                                     type="text"
                                     className="w-full p-2 border border-indigo-400 rounded-lg bg-indigo-900/10"
-                                    value={Number(totalCost).toFixed(2)}
+                                    // value={Number(totalCost).toFixed(2)}
+                                    value={Number(stockForm.total_cost).toFixed(2)}
                                     readOnly
                                 />
                             </div>
@@ -208,8 +270,11 @@ export default function Stock () {
                         <textarea 
                             className="resize-none p-2 w-full rounded-lg border border-white hover:border-indigo-900 bg-indigo-900/10"
                             placeholder="Type here..."
-                            onChange={(e)=>setRemark(e.target.value)}
-                            value={remark}
+                            // onChange={(e)=>setRemark(e.target.value)}
+                            // value={remark}
+                            name="remarks"
+                            onChange={handleStock}
+                            value={stockForm.remarks}
                         />
                     </div>
                 </div>

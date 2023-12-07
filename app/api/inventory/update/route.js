@@ -15,8 +15,8 @@ export async function POST (request) {
         const decoded = await jwt.decode(token, {complete: true});
         const user = await User.findOne({_id: decoded.payload.id}).exec();
         const item = await Item.findOne({_id: item_id}).exec();
-        const ics_are = total_cost > 50000 ? 'are' : 'ics';
-        console.log(id)
+        const tcost = parseFloat(quantity) * parseFloat(unit_cost);
+        const ics_are = tcost > 50000 ? 'are' : 'ics';
         const result = await Inventory.findOneAndUpdate({_id: id}, {item: item, inventory_tag: inventory_tag, 
             source_fund: source_fund, date_acquired: date_acquired, quantity: quantity, 
             unit_cost: unit_cost, total_cost: total_cost, stock: stock, remarks: remarks, 
