@@ -11,10 +11,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <React.StrictMode>
+    // <React.StrictMode>
       <html lang="en">
         <body className={inter.className+' bg-[#050212]'}>{children}</body>
       </html>
-    </React.StrictMode>
+    // </React.StrictMode>
   )
 }
