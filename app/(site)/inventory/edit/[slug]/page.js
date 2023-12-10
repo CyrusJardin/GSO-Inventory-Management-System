@@ -137,13 +137,13 @@ export default function Edit ({ params }) {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 space-y-2">
-                <div className="w-full bg-white rounded-lg shadow-md p-6 space-y-2">
+                <div className="w-full bg-indigo-900/10 border border-white text-white rounded-lg shadow-md p-6 space-y-2">
                     <div className="w-full md:flex gap-2">
                         <div className="w-full md:w-1/2">
                             <label className="text-xs font-bold">Inventory Tag</label>
                             <input 
                                 type="text"
-                                className="w-full p-2 border hover:border-black rounded-lg"
+                                className="w-full p-2 bg-indigo-900/10 border hover:border-indigo-400 rounded-lg"
                                 name="inventory_tag"
                                 onChange={onEditChange}
                                 value={editForm.inventory_tag}
@@ -154,7 +154,7 @@ export default function Edit ({ params }) {
                             <label className="text-xs font-bold">Source of Funds</label>
                             <input 
                                 type="text"
-                                className="w-full p-2 border hover:border-black rounded-lg"
+                                className="w-full p-2 bg-indigo-900/10 border hover:border-indigo-400 rounded-lg"
                                 name="source_fund"
                                 onChange={onEditChange}
                                 value={editForm.source_fund}
@@ -171,14 +171,14 @@ export default function Edit ({ params }) {
                                 value={defaultItem}
                             /> */}
                             <select 
-                                className="w-full p-2 border hover:border-black rounded-lg"
+                                className="w-full p-2 bg-indigo-900/10 border hover:border-indigo-400 rounded-lg"
                                 onChange={onItemChange}
                                 value={editForm.item_id}
                             >
                                 {
                                     itemSelectOption.map((item,id)=>{
                                         return (
-                                            <option key={id} value={item.value}>{item.label}</option>
+                                            <option className="bg-slate-900 text-white checked:bg-blue-600" key={id} value={item.value}>{item.label}</option>
                                         )
                                     })
                                 }
@@ -187,7 +187,7 @@ export default function Edit ({ params }) {
                         <div className="w-full md:w-1/2">
                             <label className="text-xs font-bold">Date Added</label>
                             <input 
-                                className="w-full p-2 border hover:border-black rounded-lg"
+                                className="w-full p-2 bg-indigo-900/10 border hover:border-indigo-400 rounded-lg"
                                 type="date"
                                 name="date_acquired"
                                 onChange={onEditChange}
@@ -201,7 +201,7 @@ export default function Edit ({ params }) {
                             <label className="text-xs font-bold">Quantity</label>
                             <input 
                                 type="Number"
-                                className="w-full p-2 border hover:border-black rounded-lg"
+                                className="w-full p-2 bg-indigo-900/10 border hover:border-indigo-400 rounded-lg"
                                 onChange={onQuantityChange}
                                 value={editForm.quantity}
                                 required
@@ -212,7 +212,7 @@ export default function Edit ({ params }) {
                             <input 
                                 type="Number"
                                 name="unit_cost"
-                                className="w-full md:w-full p-2 border hover:border-black rounded-lg"
+                                className="w-full md:w-full p-2 bg-indigo-900/10 border hover:border-indigo-400 rounded-lg"
                                 value={Number(editForm.unit_cost).toFixed(2)}
                                 onChange={onUnitCostChange}
                                 required
@@ -222,7 +222,7 @@ export default function Edit ({ params }) {
                             <label className={`text-xs font-bold ${editForm.total_cost > 0 ? 'text-green-600' : 'text-red-600'}`}>Total Cost</label>
                             <input 
                                 type="text"
-                                className={`w-full p-2 border rounded-lg focus:outline-none focus:ring-2 ${editForm.total_cost > 0 ? 'text-green-600 border-green-200 hover:border-green-600 focus:ring-green-600' : 
+                                className={`w-full p-2 bg-indigo-900/10 border rounded-lg focus:outline-none focus:ring-2 ${editForm.total_cost > 0 ? 'text-green-600 border-green-200 hover:border-green-600 focus:ring-green-600' : 
                                     'text-red-600 border-red-200 hover:border-red-600 focus:ring-red-600'}`}
                                 value={editForm.total_cost.toFixed(2)}
                                 readOnly
@@ -232,7 +232,7 @@ export default function Edit ({ params }) {
                             <label className={`text-xs font-bold text-indigo-600 ${editForm.stock < 0 ? 'text-red-600' : ''}`}>Stock</label>
                             <input 
                                 type="text"
-                                className={`w-full p-2 border focus:outline-none focus:ring-2 rounded-lg ${editForm.stock < 0 ? 'border-red-200 text-red-600 focus:ring-red-600 hover:border-red-600 border-red-200' : 'border-indigo-200 focus:ring-indigo-600 hover:border-indigo-600 text-indigo-600 border-indigo-200'}`}
+                                className={`w-full p-2 bg-indigo-900/10 border focus:outline-none focus:ring-2 rounded-lg ${editForm.stock < 0 ? 'border-red-200 text-red-600 focus:ring-red-600 hover:border-red-600 border-red-200' : 'border-indigo-200 focus:ring-indigo-600 hover:border-indigo-600 text-indigo-600 border-indigo-200'}`}
                                 value={editForm.stock}
                                 readOnly
                             />
@@ -241,7 +241,7 @@ export default function Edit ({ params }) {
                     <div className="w-full">
                         <label className="text-xs font-bold">Remarks</label>
                         <textarea 
-                            className="resize-none p-2 w-full rounded-lg border hover:border-black"
+                            className="resize-none p-2 w-full rounded-lg bg-indigo-900/10 border hover:border-indigo-400"
                             placeholder="Type here..."
                             name="remarks"
                             onChange={onEditChange}
@@ -249,7 +249,7 @@ export default function Edit ({ params }) {
                         />
                     </div>
                 </div>
-                <div className="w-full bg-white rounded-lg p-6 shadow-md flex gap-2">
+                <div className="w-full bg-indigo-900/10 border border-white rounded-lg p-6 shadow-md flex gap-2">
                     <Link
                         href={'/inventory'}
                         className="block w-full md:w-1/3 p-2 rounded-lg bg-slate-800 hover:bg-slate-800/80 text-center text-white"

@@ -10,7 +10,7 @@ export async function POST (request) {
         const token = await request.cookies.get('token')?.value || '';
         const decoded = await jwt.decode(token, {complete: true});
         await connectMongoDB();
-        const user = await User.findOne({_id: id}).exec();
+        const user = await User.findByIdAndDelete(id).exec();
         const usr = await User.findOne({_id: decoded.payload.id}).exec();
         if (!user) {
             return NextResponse.json({message: 'Can not find User'}, {status: 402});

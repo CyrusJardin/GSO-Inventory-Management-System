@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { ImSpinner10 } from "react-icons/im";
+import { HiPencilSquare, HiTrash } from "react-icons/hi2";
 
 export default function Employee () {
 
@@ -110,15 +111,15 @@ export default function Employee () {
                                             <td className="space-y-2 p-2 border border-slate-900 text-white">
                                                 <Link
                                                     href={'/data-entry/employee/edit/'+item?._id}
-                                                    className="block w-full rounded-lg text-center p-1 bg-green-600 hover:bg-green-600/80"
+                                                    className="block rounded-lg text-center p-1 bg-green-600 hover:bg-green-600/80"
                                                 >
-                                                    edit
+                                                    <HiPencilSquare className="w-6 h-6" />
                                                 </Link>
                                                 <button
                                                     onClick={()=>confirmDelete(item?._id, id)}
-                                                    className="w-full rounded-lg p-1 bg-red-600 hover:bg-red-600/80"
+                                                    className="rounded-lg p-1 bg-red-600 hover:bg-red-600/80"
                                                 >
-                                                    delete
+                                                    <HiTrash className="w-6 h-6" />
                                                 </button>
                                             </td>
                                         </tr>

@@ -6,6 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ImSpinner10 } from "react-icons/im";
+import { HiPencilSquare, HiTrash } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
 export default function Department () {
@@ -92,15 +93,15 @@ export default function Department () {
                                             <td className="flex gap-2 p-2 border border-slate-900 text-white">
                                                 <Link
                                                     href={'/data-entry/office/edit/'+item?._id}
-                                                    className="block text-center w-1/2 p-1 bg-green-600 hover:bg-green-600/80"
+                                                    className="block text-center p-2 rounded-lg bg-green-600 hover:bg-green-600/80"
                                                 >
-                                                    edit
+                                                    <HiPencilSquare className="w-6 h-6" />
                                                 </Link>
                                                 <button
                                                     onClick={()=>deleteDepartment(item?._id)}
-                                                    className="w-1/2 p-1 bg-red-600 hover:bg-red-600/80"
+                                                    className="p-2 rounded-lg bg-red-600 hover:bg-red-600/80"
                                                 >
-                                                    delete
+                                                    <HiTrash className="w-6 h-6" />
                                                 </button>
                                             </td>
                                         </tr>

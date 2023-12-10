@@ -15,13 +15,13 @@ export default function Stock () {
     const [items, setItems] = useState([])
     const [disableBtn, setDisableBtn] = useState(false)
     const [itemSelectOption, setItemSelectOption] = useState([])
-    const [selectedItem, setSelectedItem] = useState('')
+    // const [selectedItem, setSelectedItem] = useState('')
     const [sourceFund, setSourceFund] = useState('')
-    const [tag, setTag] = useState('')
-    const [qty, setQty] = useState(0)
-    const [unitCost, setUnitCost] = useState(0.00)
-    const [totalCost, setTotalCost] = useState(0.00)
-    const [remark, setRemark] = useState('')
+    // const [tag, setTag] = useState('')
+    // const [qty, setQty] = useState(0)
+    // const [unitCost, setUnitCost] = useState(0.00)
+    // const [totalCost, setTotalCost] = useState(0.00)
+    // const [remark, setRemark] = useState('')
     const [dateAcquired, setDateAcquired] = useState('')
     const [stockForm, setStockForm] = useState({
         inventory_tag: '',
@@ -58,15 +58,25 @@ export default function Stock () {
             // }
             )
             .then(res=>{
-                setDisableBtn(false)
-                setTag('')
-                setQty(0)
-                setUnitCost(0.00)
-                setTotalCost(0.00)
-                setDateAcquired('')
-                setSourceFund('')
-                setRemark('')
+                // setTag('')
+                // setQty(0)
+                // setUnitCost(0.00)
+                // setTotalCost(0.00)
+                // setDateAcquired('')
+                // setSourceFund('')
+                // setRemark('')
+                setStockForm({
+                    inventory_tag: '',
+                    quantity: 0,
+                    unit_cost: 0,
+                    total_cost: 0,
+                    item_id: '',
+                    date_acquired: new Date(),
+                    source_fund: '',
+                    remarks: ''
+                })
                 setSelectedItem(null)
+                setDisableBtn(false)
                 Swal.fire(res.data.message)
             })
             .catch(err=>{
@@ -132,9 +142,9 @@ export default function Stock () {
 
     const handleQuantity = e => {
         const q = e.target.value
-        const newTotal = q * unitCost
-        setQty(q)
-        setTotalCost(newTotal)
+        const newTotal = q * stockForm.unit_cost
+        // setQty(q)
+        // setTotalCost(newTotal)
         setStockForm({
             ...stockForm,
             quantity: q,
@@ -144,9 +154,9 @@ export default function Stock () {
 
     const handleUnitCost = e => {
         const cost = e.target.value
-        const newTotal = qty * cost
-        setUnitCost(cost)
-        setTotalCost(newTotal)
+        const newTotal = stockForm.quantity * cost
+        // setUnitCost(cost)
+        // setTotalCost(newTotal)
         setStockForm({
             ...stockForm,
             unit_cost: cost,
@@ -166,7 +176,7 @@ export default function Stock () {
                             <input 
                                 type="text"
                                 name="inventory_tag"
-                                className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${tag ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
+                                className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${stockForm.inventory_tag ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
                                 // onChange={(e)=>setTag(e.target.value)}
                                 onChange={handleStock}
                                 value={stockForm.inventory_tag}
@@ -236,10 +246,11 @@ export default function Stock () {
                                 <label className="text-xs font-bold">Quantity</label>
                                 <input 
                                     type="Number"
-                                    className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${qty ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
+                                    className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${stockForm.quantity ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
                                     onChange={handleQuantity}
                                     // value={qty}
                                     value={stockForm.quantity}
+                                    min={0}
                                     required
                                 />
                             </div>
@@ -247,10 +258,11 @@ export default function Stock () {
                                 <label className="text-xs font-bold">Unit Cost</label>
                                 <input 
                                     type="Number"
-                                    className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${unitCost ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
+                                    className={`w-full p-2 border bg-indigo-900/10 rounded-lg ${stockForm.unit_cost ? 'hover:border-indigo-900' : 'border-red-300 hover:border-red-600'}`}
                                     onChange={handleUnitCost}
                                     // value={Number(unitCost).toFixed(2)}
                                     value={Number(stockForm.unit_cost).toFixed(2)}
+                                    min={0}
                                     required
                                 />
                             </div>

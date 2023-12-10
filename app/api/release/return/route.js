@@ -16,13 +16,13 @@ export async function POST (request) {
         const decoded = await jwt.decode(token, {complete: true});
         const user = await User.findOne({_id: decoded.payload.id}).exec();
         const release = await Release.findOne({_id: id}).populate('inventory').populate('employee').exec();
-        const ret = parseInt(release.returned) + parseInt(quantity);
-        const qty = parseInt(release.quantity) - parseInt(quantity);
+        const ret = parseInt(release.returned, 10) + parseInt(quantity, 10);
+        const qty = parseInt(release.quantity, 10) - parseInt(quantity, 10);
         const result = await Release.findOneAndUpdate({_id: id}, {quantity: qty, returned: ret}).exec();
         if (!result) {
             return NextResponse.json({message: 'Failed to return Release'}, {status: 402});
         }
-        const newRel = parseInt(release?.inventory?.release, 10) - parseInt(quantity, 10);
+        const newRel = parseInt(release?.inventory?.released, 10) - parseInt(quantity, 10);
         const newStock = parseInt(release?.inventory?.stock, 10) + parseInt(quantity, 10);
         const newCost = parseFloat(newStock) * parseFloat(release?.inventory?.unit_cost);
         await Inventory.findOneAndUpdate({_id: release?.inventory?._id}, {stock: newStock, released: newRel, total_cost: newCost}).exec();

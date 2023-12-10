@@ -21,6 +21,7 @@ export default function Release () {
     const [releaseDate, setReleaseDate] = useState('')
     const [quantity, setQuantity] = useState('')
     const [remarks, setRemarks] = useState('')
+    const [disableSave, setDisableSave] = useState(false)
     const [data, setData] = useState({
         items: [],
         employees: []
@@ -29,7 +30,7 @@ export default function Release () {
     const releaseItem = async (e) => {
         try {
             e.preventDefault()
-            console.log(selectedItem)
+            setDisableSave(true)
             await axios.post('/api/inventory/release', {
                 employee: selectedEmployee,
                 item_id: selectedItem,
@@ -38,13 +39,13 @@ export default function Release () {
                 remarks: remarks
             })
             .then(res=>{
-                console.log(res)
                 setSelectedEmployee('')
                 setSelectedItem('')
                 setReleaseDate('')
                 setQuantity('')
                 setRemarks('')
                 setItemStocks(null)
+                setDisableSave(false)
                 Swal.fire({
                     title: res.data.message,
                     icon: 'success',
@@ -59,6 +60,7 @@ export default function Release () {
             })
             .catch(err=>{
                 console.log(err)
+                setDisableSave(false)
             })
         } catch (error) {
             console.log(error)
@@ -212,7 +214,7 @@ export default function Release () {
                             </Link>
                             <button
                                 type="submit"
-                                disabled={itemStocks<quantity || quantity < 1}
+                                disabled={itemStocks<quantity || quantity < 1 || disableSave}
                                 className="w-full md:w-1/2 p-2 rounded-lg bg-blue-600 hover:bg-blue-600/80 text-white"
                             >
                                 save

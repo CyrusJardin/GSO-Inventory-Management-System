@@ -160,11 +160,15 @@ export default function Department () {
                 if (!value) {
                     return 'Quantity is required'
                 }
+                if (value <= 0) {
+                    return 'Quantity is insufficient'
+                }
             },
             showCancelButton: true
         })
         .then(res=>{
             if (res.value) {
+                console.log(res.value)
                 returnItem(id, res.value)
             }
         })
@@ -178,6 +182,7 @@ export default function Department () {
                 Swal.fire(res.data.message)
             })
             .catch(err=>{
+                console.log(err)
                 Swal.fire(err.message)
             })
         } catch (error) {

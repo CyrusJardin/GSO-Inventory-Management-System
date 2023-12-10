@@ -10,6 +10,7 @@ import BarcodeImage from "@/app/components/barcodeImage";
 import { ImSpinner10 } from "react-icons/im";
 import Swal from "sweetalert2";
 import { TbRulerMeasure } from "react-icons/tb";
+import { HiPencilSquare, HiTrash } from "react-icons/hi2";
 
 export default function Item () {
 
@@ -119,15 +120,15 @@ export default function Item () {
                                         <td className="p-2 border border-slate-600 h-auto text-white space-y-2">
                                             <Link
                                                 href={`/data-entry/item/edit/${item?._id}`}
-                                                className="block p-2 rounded-lg w-full text-center bg-green-600 hover:bg-green-900"
+                                                className="block p-2 rounded-lg text-center bg-green-600 hover:bg-green-900"
                                             >
-                                                edit
+                                                <HiPencilSquare className="w-6 h-6" />
                                             </Link>
                                             <button
-                                                className="w-full p-2 rounded-lg bg-red-600 hover:bg-red-900"
+                                                className="p-2 rounded-lg bg-red-600 hover:bg-red-900"
                                                 onClick={()=>confirmDelete(item?._id)}
                                             >
-                                                delete
+                                                <HiTrash className="w-6 h-6" />
                                             </button>
                                         </td>
                                     </tr>

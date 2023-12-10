@@ -34,15 +34,15 @@ export default function Search ({ params }) {
             <TopNav />
             <SideNav />
             <div className="absolute w-full md:w-4/5 top-20 right-0 p-6 space-y-2">
-                <div className="w-full bg-white rounded-lg shadow-md p-6 flex">
+                <div className="w-full bg-indigo-900/10 border border-white rounded-lg shadow-md p-6 flex">
                     <Link
                         href={'/'}
-                        className="block w-full md:w-1/3 rounded-lg p-2 text-center text-white bg-slate-900 hover:bg-slate-900/80"
+                        className="block w-full md:w-1/3 rounded-lg p-2 text-center text-white bg-indigo-900 hover:bg-indigo-900/80"
                     >
                         back
                     </Link>
                 </div>
-                <div className="w-full bg-white rounded-lg shadow-md p-6">
+                <div className="w-full bg-indigo-900/10 border border-white text-white rounded-lg shadow-md p-6">
                     <p className="text-center text-gray-500">{searchResult.length + itemResult.length} Results of {params.slug}</p>
                     <div className="w-full h-96 overflow-scroll">
                         {

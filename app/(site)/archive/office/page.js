@@ -17,6 +17,7 @@ export default function Office () {
         try {
             await axios.post('/api/department/archive', {id:id})
             .then(res=>{
+                getData()
                 Swal.fire(res.data.message)
             })
             .catch(err=>{
