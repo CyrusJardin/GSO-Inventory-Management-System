@@ -85,7 +85,6 @@ export default function Employee () {
             setIsLoading(true)
             await axios.post('/api/employee/index', {id:id, month: mon, year: yr})
             .then(res=>{
-                console.log(res)
                 setEmployees(res.data.data)
                 calculateTotalCost(res.data.data)
                 setIsLoading(false)
@@ -105,7 +104,6 @@ export default function Employee () {
             setIsLoading(true)
             await axios.post('/api/employee/index', {id:selectedEmployee, month: month, year: year})
             .then(res=>{
-                console.log(res)
                 setEmployees(res.data.data)
                 calculateTotalCost(res.data.data)
                 setIsLoading(false)
@@ -163,6 +161,7 @@ export default function Employee () {
         }
         else {
             const arr = employees[idx]
+            console.log(arr)
             Swal.fire({
                 title: 'Enter your purpose for this document',
                 icon: 'info',

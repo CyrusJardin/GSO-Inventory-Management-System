@@ -25,24 +25,52 @@ export default function Exports () {
         let row = {}
         row['qty'] = arr.quantity
         row['unit'] = arr.item.unit
-        row['desc'] = arr.item.description[0]
+        row['desc'] = arr.item.item_name
         row['pn'] = arr.item.property_number
         row['uc'] = arr.inventory.unit_cost
         row['total'] = arr.inventory.unit_cost * arr.quantity
         totalCost += arr.inventory.unit_cost * arr.quantity
         rearrangedArr.push(row)
         row = {}
-        for (let index = 1; index < arr.item.description.length; index++) {
+        const descArr = [...arr.item.description]
+        descArr.forEach((el,id)=>{
             row['qty'] = ''
             row['unit'] = ''
-            row['desc'] = arr.item.description[index]
+            row['desc'] = descArr[id]
             row['pn'] = ''
             row['uc'] = ''
             row['total'] = ''
             rearrangedArr.push(row)
-        }
+            row = {}
+        })
+        console.log(rearrangedArr)
+        // if (arr.item.description.length > 1) {
+        //     let index = 1
+        //     arr.item.description.forEach(el=>{
+        //         if (index > 1) {
+        //             row['qty'] = ''
+        //             row['unit'] = ''
+        //             row['desc'] = el
+        //             row['pn'] = ''
+        //             row['uc'] = ''
+        //             row['total'] = ''
+        //             rearrangedArr.push(row)
+        //             console.log(el)
+        //         }
+        //         index++
+        //     })
+        //     // for (let index = 1; index < arr.item.description.length; index++) {
+        //     //     row['qty'] = ''
+        //     //     row['unit'] = ''
+        //     //     row['desc'] = arr.item.description[index]
+        //     //     row['pn'] = ''
+        //     //     row['uc'] = ''
+        //     //     row['total'] = ''
+        //     //     rearrangedArr.push(row)
+        //     //     console.log(arr.item.description[index])
+        //     // }
+        // }
         rearrangedArr.forEach(elm=>{
-            console.log(elm)
             const trow = new TableRow({
                 children: [
                     new TableCell({
@@ -59,7 +87,7 @@ export default function Exports () {
                             size: 10,
                             type: WidthType.PERCENTAGE
                         },
-                        children: [new Paragraph(elm['unit'])]
+                        children: [new Paragraph(elm['unit'].toString())]
                     }),
                     new TableCell({
                         columnSpan: 5,
@@ -67,7 +95,7 @@ export default function Exports () {
                             size: 40,
                             type: WidthType.PERCENTAGE
                         },
-                        children: [new Paragraph(elm['desc'])]
+                        children: [new Paragraph(elm['desc'].toString())]
                     }),
                     new TableCell({
                         columnSpan: 1,
@@ -75,7 +103,7 @@ export default function Exports () {
                             size: 10,
                             type: WidthType.PERCENTAGE
                         },
-                        children: [new Paragraph(elm['pn'])]
+                        children: [new Paragraph(elm['pn'].toString())]
                     }),
                     new TableCell({
                         columnSpan: 2,
@@ -406,6 +434,58 @@ export default function Exports () {
 
     const exportICS = (arr, details, purpose) => {
         const title = new TextRun({text:'INVENTORY CUSTODIAN SLIP',color:'FFFFFF', size:48})
+        const header = new TableRow({
+            children: [
+                new TableCell({
+                    columnSpan: 1,
+                    width: {
+                        size: 10,
+                        type: WidthType.PERCENTAGE
+                    },
+                    children: [new Paragraph("QTY")]
+                }),
+                new TableCell({
+                    columnSpan: 1,
+                    width: {
+                        size: 10,
+                        type: WidthType.PERCENTAGE
+                    },
+                    children: [new Paragraph("UNIT")]
+                }),
+                new TableCell({
+                    columnSpan: 5,
+                    width: {
+                        size: 40,
+                        type: WidthType.PERCENTAGE
+                    },
+                    children: [new Paragraph("Description")]
+                }),
+                new TableCell({
+                    columnSpan: 1,
+                    width: {
+                        size: 10,
+                        type: WidthType.PERCENTAGE
+                    },
+                    children: [new Paragraph("Property No.")]
+                }),
+                new TableCell({
+                    columnSpan: 2,
+                    width: {
+                        size: 15,
+                        type: WidthType.PERCENTAGE
+                    },
+                    children: [new Paragraph("Unit Cost")]
+                }),
+                new TableCell({
+                    columnSpan: 2,
+                    width: {
+                        size: 15,
+                        type: WidthType.PERCENTAGE
+                    },
+                    children: [new Paragraph("Total Amount")]
+                }),
+            ]
+        })
         let tableRows = [
             new TableRow({
                 children: [
@@ -471,10 +551,11 @@ export default function Exports () {
                                 ]
                             })
                         ]
-                    })
+                    }),
                 ]
             })
         ]
+        tableRows.push(header)
         tableRows = addTable(tableRows, arr, details, purpose)
         const table = new Table({
             alignment: AlignmentType.CENTER,
@@ -1195,7 +1276,7 @@ export default function Exports () {
                     }),
                     new TableCell({
                         children: [
-                            new Paragraph(element.quantity)
+                            new Paragraph(element.quantity.toString())
                         ]
                     }),
                     new TableCell({

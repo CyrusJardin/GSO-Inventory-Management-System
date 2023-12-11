@@ -45,26 +45,8 @@ export default function Stock () {
     const addStock = async () => {
         try {
             setDisableBtn(true)
-            await axios.post('/api/inventory/store', stockForm
-            // {
-            //     inventory_tag: tag,
-            //     quantity: qty,
-            //     unit_cost: unitCost,
-            //     total_cost: totalCost,
-            //     item_id: selectedItem,
-            //     date_acquired: dateAcquired,
-            //     source_fund: sourceFund,
-            //     remarks: remark
-            // }
-            )
+            await axios.post('/api/inventory/store', stockForm)
             .then(res=>{
-                // setTag('')
-                // setQty(0)
-                // setUnitCost(0.00)
-                // setTotalCost(0.00)
-                // setDateAcquired('')
-                // setSourceFund('')
-                // setRemark('')
                 setStockForm({
                     inventory_tag: '',
                     quantity: 0,
@@ -75,7 +57,6 @@ export default function Stock () {
                     source_fund: '',
                     remarks: ''
                 })
-                setSelectedItem(null)
                 setDisableBtn(false)
                 Swal.fire(res.data.message)
             })

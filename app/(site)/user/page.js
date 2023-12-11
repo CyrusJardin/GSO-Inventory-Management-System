@@ -245,11 +245,11 @@ export default function User () {
                                 users.map((item,id)=>{
                                     return (
                                         <tr key={id}>
-                                            <td>{item?.first_name} {item?.last_name}</td>
-                                            <td>{item?.username}</td>
-                                            <td>{item?.default_password}</td>
-                                            <td>{item?.position}</td>
-                                            <td className="p-2 text-white">
+                                            <td className="p-2 border border-slate-900">{item?.first_name} {item?.last_name}</td>
+                                            <td className="p-2 border border-slate-900">{item?.username}</td>
+                                            <td className="p-2 border border-slate-900">{item?.default_password}</td>
+                                            <td className="p-2 border border-slate-900">{item?.position}</td>
+                                            <td className="p-2 text-white border border-slate-900">
                                                 <button
                                                     className="w-full p-1 rounded-lg bg-red-600 hover:bg-red-600/80"
                                                     onClick={()=>confirmDelete(item._id)}

@@ -108,9 +108,9 @@ export default function Office () {
                                         archive.map((item, index)=>{
                                             return (
                                                 <tr key={index} className="border-b border-slate-900">
-                                                    <td className="p-2">{item.department_name}</td>
-                                                    <td className="p-2">{item.office_name}</td>
-                                                    <td className="flex gap-2 p-2">
+                                                    <td className="p-2 border border-slate-900">{item.department_name}</td>
+                                                    <td className="p-2 border border-slate-900">{item.office_name}</td>
+                                                    <td className="flex gap-2 p-2 border border-slate-900">
                                                         <button
                                                             onClick={()=>restoreOffice(item._id)}
                                                             className="p-2 rounded-lg bg-teal-600 hover:bg-teal-600/80 text-white w-full"

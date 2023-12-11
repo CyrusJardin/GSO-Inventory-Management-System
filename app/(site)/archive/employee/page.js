@@ -108,10 +108,10 @@ export default function Employee () {
                                         archive.map((item, index)=>{
                                             return(
                                                 <tr key={index}>
-                                                    <td className="p-2">{item.first_name} {item.last_name}</td>
-                                                    <td className="p-2">{item?.department?.department_name}</td>
-                                                    <td className="p-2">{item?.department?.office_name}</td>
-                                                    <td className="text-white flex gap-2 p-2">
+                                                    <td className="p-2 border border-slate-900">{item.first_name} {item.last_name}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.department?.department_name}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.department?.office_name}</td>
+                                                    <td className="text-white flex gap-2 p-2 border border-slate-900">
                                                         <button
                                                             onClick={()=>restoreEmployee(item._id)}
                                                             className="p-2 w-full rounded-lg bg-teal-600 hover:bg-teal-600/80 text-white"

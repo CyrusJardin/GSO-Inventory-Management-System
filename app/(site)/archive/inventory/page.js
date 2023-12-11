@@ -111,11 +111,11 @@ export default function Inventory () {
                                         archive.map((item,index)=>{
                                             return (
                                                 <tr key={index}>
-                                                    <td className="p-2">{item?.inventory_tag}</td>
-                                                    <td className="p-2">{item?.item?.item_name}</td>
-                                                    <td className="p-2">{item?.item?.property_number}</td>
-                                                    <td className="p-2"><DateFrame dateStr={item?.deletedAt} /></td>
-                                                    <td className="flex gap-2 p-2">
+                                                    <td className="p-2 border border-slate-900">{item?.inventory_tag}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.item?.item_name}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.item?.property_number}</td>
+                                                    <td className="p-2 border border-slate-900"><DateFrame dateStr={item?.deletedAt} /></td>
+                                                    <td className="flex gap-2 p-2 border border-slate-900">
                                                         <button
                                                             onClick={()=>restore(item._id)}
                                                             className="p-2 rounded-lg bg-teal-600 hover:bg-teal-600/80 text-white"

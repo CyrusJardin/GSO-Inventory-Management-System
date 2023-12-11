@@ -213,11 +213,11 @@ export default function Page () {
                                         :
                                         availableStocks.map((item,index)=>{
                                             return (
-                                                <tr key={index} className="border-b border-slate-900">
-                                                    <td className="p-2">{item?.item?.item_name}</td>
-                                                    <td className="p-2">{item?.inventory_tag}</td>
-                                                    <td className="p-2">{item?.unit_cost}</td>
-                                                    <td className="p-2">{item?.stock}</td>
+                                                <tr key={index}>
+                                                    <td className="p-2 border border-slate-900">{item?.item?.item_name}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.inventory_tag}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.unit_cost}</td>
+                                                    <td className="p-2 border border-slate-900">{item?.stock}</td>
                                                 </tr>
                                             )
                                         })
